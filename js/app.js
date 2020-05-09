@@ -2,6 +2,7 @@
 const carrito = document.getElementById('carrito');
 const cursos = document.getElementById('lista-cursos');
 const listaCursos = document.querySelector('#lista-carrito tbody')
+const vaciarCarritoBtn = document.getElementById('vaciar-carrito')
 
 
 
@@ -12,6 +13,8 @@ function cargarEventListeners() {
     cursos.addEventListener('click', comprarCurso)
     // Cuando se elimina un curso del carrito
     carrito.addEventListener('click', eliminarCurso)
+    // al vaciar el carrito
+    vaciarCarritoBtn.addEventListener('click', vaciarCarrito)
 }
 
 
@@ -66,4 +69,16 @@ function eliminarCurso(e){
         console.log(e.target.parentElement.parentElement)
         e.target.parentElement.parentElement.remove()
     }
+}
+
+// Elimina los cursos del carrito en el DOM html
+function vaciarCarrito(){
+    // forma lenta
+    // listaCursos.innerHTML = ''
+    // forma rapida y recomendada
+    // innerHtml vs while https://coderwall.com/p/nygghw/don-t-use-innerhtml-to-empty-dom-elements
+    while(listaCursos.firstChild){
+        listaCursos.removeChild(listaCursos.firstChild)
+    }
+    return false;
 }
