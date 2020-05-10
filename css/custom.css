@@ -1,6 +1,27 @@
 body {
     background-color: #fff6f6
 }
+.linkLogo{
+    color:black;
+    text-decoration: none;
+}
+.linkLogo:hover{
+    color: #000;
+}
+.logo{
+    display: grid;
+    grid-template-columns: 50px 150px;
+    margin:0;
+    padding: 0;
+}
+.logo img{
+    width: 50px;
+}
+.logo figcaption{
+    line-height: 50px;
+    font-size: 2em;
+    margin-left: 10px;
+}
 h1 {
     text-align: center;
 }
