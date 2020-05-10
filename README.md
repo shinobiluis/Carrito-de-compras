@@ -1,4 +1,4 @@
-# Carrito-de-compras
+# Carrito de compras con JavaScript
 
 Este proyecto es para simular el uso de un carrito de compras
 
