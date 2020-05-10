@@ -69,11 +69,16 @@ function insertarCarrito(curso){
 function eliminarCurso(e){
     e.preventDefault();
     console.log('eleiminado')
-    let curso;
+    let curso,
+        cursoId;
     if (e.target.classList.contains('borrar-curso')) {
         console.log(e.target.parentElement.parentElement)
         e.target.parentElement.parentElement.remove()
+        curso = e.target.parentElement.parentElement
+        cursoId = curso.querySelector('a').getAttribute('data-id')
+        
     }
+    eliminarCursoLocalStorage(cursoId)
 }
 
 // Elimina los cursos del carrito en el DOM html
@@ -85,6 +90,9 @@ function vaciarCarrito(){
     while(listaCursos.firstChild){
         listaCursos.removeChild(listaCursos.firstChild)
     }
+    // vaciar Local Storage
+    vaciarLocalStorage();
+
     return false;
 }
 
@@ -131,4 +139,28 @@ function leerLocalStorage(){
         `;
         listaCursos.appendChild(row)
     });
+}
+
+// Elimina el cuarso por el ID en localstorage
+function eliminarCursoLocalStorage(cursoId){
+    console.log("Este es el id que se debe borrar", cursoId)
+    let cursosLS
+    // optenemos el arreglo de cursos
+    cursosLS = obtenerCursosLocalStorage();
+    // Iteramos comparando el id del curso borrando la coincidencia
+    cursosLS.forEach(function(cursoLS, index){
+        console.log(cursoLS)
+        if (cursoLS.id === cursoId) {
+            cursosLS.splice(index, 1)
+        }
+    })
+    // añadimos el arreglo actual a storage
+    console.log("Quedan estos", cursosLS)
+    localStorage.setItem('cursos', JSON.stringify(cursosLS))
+    
+}
+
+// Elimina todos los cursos de LocalStorage
+function vaciarLocalStorage(){
+    localStorage.clear();
 }
